@@ -1,6 +1,8 @@
 import React , { useState }from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import './Form.css'
+import { addUser } from "../../service/studentapi";
+
 
 function Form() {
   const location = useLocation();
@@ -18,11 +20,19 @@ function Form() {
         //this will help to change the update note form
         setCredentials({ ...credentials, [e.target.name]: e.target.value });
       }
+      const   handleClick = async(e) =>  {
+        e.preventDefault()
+        let data = "something"
+        console.log(data)
+     const a = await addUser(data);
+     console.log(a);
+     alert(a.msg);
+      }
   return (
     <>
         {<span >{pathWithoutSlash} Login</span>}
     <div className='form'>
-    <form onSubmit={handleSubmit} >
+    <form onSubmit={handleClick} >
     <div class="mb-3 row ">
       <label htmlFor="exampleInputEmail1" class="form-label">Email address</label>
       <input type="email" class="form-control" id="exampleInputEmail1" value={credentials.email} onChange={onChange} name = "email" aria-describedby="emailHelp"/>
